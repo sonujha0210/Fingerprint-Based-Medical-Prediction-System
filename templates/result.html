@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prediction Results</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+        padding: 20px;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+      }
+      .image-preview {
+        max-width: 300px;
+        border-radius: 10px;
+        margin-top: 10px;
+        border: 2px solid #ddd;
+      }
+      .result-text {
+        font-size: 18px;
+        margin-top: 15px;
+      }
+      .home-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 15px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+      .home-btn:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Prediction Results</h2>
+
+      {% if filename %}
+      <img
+        src="{{ url_for('uploaded_file', filename=filename) }}"
+        alt="Uploaded Image"
+        class="image-preview"
+      />
+      {% endif %} {% if blood_group %}
+      <p class="result-text">
+        <strong>Predicted Blood Group:</strong> {{ blood_group }}
+      </p>
+      <p class="result-text"><strong>Predicted Gender:</strong> {{ gender }}</p>
+      <p class="result-text">
+        <strong>Confidence:</strong> Male: {{ male_prob }}% | Female: {{
+        female_prob }}%
+      </p>
+      {% endif %} {% if eye_result %}
+      <p class="result-text">
+        <strong>Predicted Eye Disease:</strong> {{ eye_result }}
+      </p>
+      {% endif %}
+
+      <a href="/" class="home-btn">Go Back</a>
+    </div>
+  </body>
+</html>
